@@ -9,14 +9,15 @@
 @section('content')
     <div class="p-2"></div>
 
-    <div class="card" >
+    <div class="card">
         <div class="card-header">
             <h3>Marcas</h3>
-            <a href="{{route('admin.brands.create')}}" class="btn btn-success float-right"><i class="fas fa-plus"></i> Nuevo</a>
+            <a href="{{ route('admin.brands.create') }}" class="btn btn-success float-right"><i class="fas fa-plus"></i>
+                Nuevo</a>
         </div>
-        <div class="card-body table-responsive" >
-           
-            <table class="table table-striped">
+        <div class="card-body table-responsive">
+
+            <table class="table table-striped" id="datatable">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -31,31 +32,66 @@
 
                     @foreach ($brands as $brand)
                         <tr>
-                            <td>{{$brand->id}}</td>
-                            <td>{{$brand->name }} </td>
-                            <td>{{$brand->description }}</td>
-                            <td><a href="{{route('admin.brands.edit', $brand)}}" class="btn btn-primary"> <i class="fas fa-edit"></i></a> </td>
+                            <td>{{ $brand->id }}</td>
+                            <td>{{ $brand->name }} </td>
+                            <td>{{ $brand->description }}</td>
+                            <td><a href="{{ route('admin.brands.edit', $brand) }}" class="btn btn-primary"> <i
+                                        class="fas fa-edit"></i></a> </td>
                             <td>
-                                <form action="">
+                                <form action="{{ route('admin.brands.destroy', $brand) }}" method="POST"
+                                    class='frmEliminar'>
+                                    @method('delete')
+                                    @csrf
                                     <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                                 </form>
                             </td>
                         </tr>
                     @endforeach
-                    
+
                 </tbody>
             </table>
-                
+
         </div>
     </div>
-    
+
 @stop
 
 @section('css')
-    {{-- Add here extra stylesheets --}}
-    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
+
+
+
+
 @stop
 
 @section('js')
-    <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
+    <script>
+        $('#datatable').DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/2.1.7/i18n/es-MX.json',
+            },
+        });
+
+        $('.frmEliminar').submit(function(e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: "Está seguro de eliminar?",
+                text: "Está acción no se puede revertir!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Si, eliminar!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                    // Swal.fire({
+                    //     title: "Deleted!",
+                    //     text: "Your file has been deleted.",
+                    //     icon: "success"
+                    // });
+                }
+            });
+        });
+    </script>
 @stop

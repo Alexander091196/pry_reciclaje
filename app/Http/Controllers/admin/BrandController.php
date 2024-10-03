@@ -31,7 +31,6 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         Brand::create($request->all());
-
         return redirect()->route('admin.brands.index');
     }
 
@@ -49,9 +48,7 @@ class BrandController extends Controller
     public function edit(string $id)
     {
         $brand = Brand::find($id);
-
         return view('admin.brands.edit', compact('brand'));
-    
     }
 
     /**
@@ -59,7 +56,10 @@ class BrandController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $brand = Brand::find($id);
+        $brand->update($request->all());
+
+        return redirect()->route('admin.brands.index');
     }
 
     /**
@@ -67,6 +67,9 @@ class BrandController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $brand = Brand::find($id);
+        $brand->delete();
+
+        return redirect()->route('admin.brands.index');
     }
 }

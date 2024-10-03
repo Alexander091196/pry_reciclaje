@@ -10,20 +10,20 @@
         </div>
 
         <div class="card-body">
-            
-            {!! Form::model($brand,['route'=>['admin.brands.update',$brand],'method'=>'put']) !!}
-            
+
+            {!! Form::model($brand, ['route' => ['admin.brands.update', $brand], 'method' => 'put']) !!}
+
             @include('admin.brands.template.form')
-            <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Registrar</button>
+            <button type="submit" class="btn btn-success"><i class="fas fa-pen-square"></i> Editar</button>
 
         </div>
-            {!! Form::close() !!}
+        {!! Form::close() !!}
         <div class="card-footer">
 
         </div>
     </div>
 @stop
-        
+
 
 @section('css')
     {{-- Add here extra stylesheets --}}
