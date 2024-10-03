@@ -31,7 +31,7 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         Brand::create($request->all());
-        return redirect()->route('admin.brands.index');
+        return redirect()->route('admin.brands.index')->with('success', 'Marca registrada correctamente!');
     }
 
     /**
@@ -59,7 +59,7 @@ class BrandController extends Controller
         $brand = Brand::find($id);
         $brand->update($request->all());
 
-        return redirect()->route('admin.brands.index');
+        return redirect()->route('admin.brands.index')->with('success', 'Marca actualizado correctamente!');
     }
 
     /**
@@ -70,6 +70,6 @@ class BrandController extends Controller
         $brand = Brand::find($id);
         $brand->delete();
 
-        return redirect()->route('admin.brands.index');
+        return redirect()->route('admin.brands.index')->with('success', 'Marca eliminada correctamente!');
     }
 }

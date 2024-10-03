@@ -85,13 +85,18 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     this.submit();
-                    // Swal.fire({
-                    //     title: "Deleted!",
-                    //     text: "Your file has been deleted.",
-                    //     icon: "success"
-                    // });
                 }
             });
         });
     </script>
+
+    @if (session('success') != null)
+        <script>
+            Swal.fire({
+                title: "Proceso exitoso!",
+                text: "{{session('success')}}",
+                icon: "success"
+            });
+        </script>
+    @endif
 @stop
