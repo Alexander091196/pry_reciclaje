@@ -321,9 +321,10 @@ return [
             'icon' => 'fas fa-copyright',
         ],
         [
-            'text' => 'change_password',
-            'url' => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+            'text' => 'Modelos',
+            'route' => 'admin.models.index',
+            'icon' => 'fas fa-car-side',
+
         ],
         [
             'text' => 'multilevel',

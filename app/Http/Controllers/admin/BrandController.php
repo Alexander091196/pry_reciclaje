@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BrandController extends Controller
 {
@@ -30,7 +31,20 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        Brand::create($request->all());
+        //Brand::create($request->all());  registra a todos los datos
+        $logo = '';
+        if ($request->logo != '') {
+            $imagen = $request->file('logo')->store('public/brand_logo');
+            $logo = Storage::url($imagen);
+        }
+
+        Brand::create([
+            'name' => $request->name,
+            'logo' => $logo,
+            'description' => $request->description,
+        ]);
+
+        // Redirigir con un mensaje de éxito
         return redirect()->route('admin.brands.index')->with('success', 'Marca registrada correctamente!');
     }
 
@@ -57,7 +71,19 @@ class BrandController extends Controller
     public function update(Request $request, string $id)
     {
         $brand = Brand::find($id);
-        $brand->update($request->all());
+        $logo = '';
+        if ($request->logo != '') {
+            $imagen = $request->file('logo')->store('public/brand_logo');
+            $logo = Storage::url($imagen);
+        }
+
+        $brand->update(
+            [
+                'name' => $request->name,
+                'logo' => $logo,
+                'description' => $request->description,
+            ]
+        );
 
         return redirect()->route('admin.brands.index')->with('success', 'Marca actualizado correctamente!');
     }

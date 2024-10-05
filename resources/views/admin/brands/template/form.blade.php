@@ -11,3 +11,8 @@
         'placeholder' => 'Descripción de la marca',
     ]) !!}
 </div>
+
+<div class="form-group">
+    <label for="logo">Seleccione una imagen</label><br>
+    <input type="file" name="logo" accept="image/*">
+</div>

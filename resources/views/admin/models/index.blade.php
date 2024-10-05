@@ -11,8 +11,8 @@
 
     <div class="card">
         <div class="card-header">
-            <h3>Marcas</h3>
-            <a href="{{ route('admin.brands.create') }}" class="btn btn-success float-right"><i class="fas fa-plus"></i>
+            <h3>Modelos</h3>
+            <a href="{{ route('admin.models.create') }}" class="btn btn-success float-right"><i class="fas fa-plus"></i>
                 Nuevo</a>
         </div>
         <div class="card-body table-responsive">
@@ -21,8 +21,8 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>LOGO</th>
-                        <th>NOMBRE</th>
+                        <th>MARCA</th>
+                        <th>MODELO</th>
                         <th>DESCRIPCIÓN</th>
                         <th width = "10"></th>
                         <th width = "10"> </th>
@@ -31,19 +31,16 @@
 
                 <tbody>
 
-                    @foreach ($brands as $brand)
+                    @foreach ($models as $model)
                         <tr>
-                            <td>{{ $brand->id }}</td>
-                            <td>
-                                <img src="{{ $brand->logo == '' ? asset('storage/brand_logo/no_imagen.png') : asset($brand->logo) }}"
-                                    width="50">
-                            </td>
-                            <td>{{ $brand->name }} </td>
-                            <td>{{ $brand->description }}</td>
-                            <td><a href="{{ route('admin.brands.edit', $brand) }}" class="btn btn-primary"> <i
+                            <td>{{ $model->id }}</td>
+                            <td>{{ $model->name }} </td>
+                            <td>{{ $model->bname }} </td>
+                            <td>{{ $model->description }}</td>
+                            <td><a href="{{ route('admin.models.edit', $model) }}" class="btn btn-primary"> <i
                                         class="fas fa-edit"></i></a> </td>
                             <td>
-                                <form action="{{ route('admin.brands.destroy', $brand) }}" method="POST"
+                                <form action="{{ route('admin.models.destroy', $model) }}" method="POST"
                                     class='frmEliminar'>
                                     @method('delete')
                                     @csrf

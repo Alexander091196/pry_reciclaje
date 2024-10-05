@@ -11,7 +11,7 @@
 
         <div class="card-body">
 
-            {!! Form::model($brand, ['route' => ['admin.brands.update', $brand], 'method' => 'put']) !!}
+            {!! Form::model($brand, ['route' => ['admin.brands.update', $brand], 'method' => 'put', 'files'=>true ]) !!}
 
             @include('admin.brands.template.form')
             <button type="submit" class="btn btn-success"><i class="fas fa-pen-square"></i> Editar</button>

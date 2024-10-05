@@ -6,13 +6,13 @@
     <div class="p-2"></div>
     <div class="card">
         <div class="card-header">
-            <h3>Nueva Marca</h3>
+            <h3>Nuevo Modelo</h3>
         </div>
 
         <div class="card-body">
-            {!! Form::open(['route' => 'admin.brands.store', 'files' => true]) !!}
+            {!! Form::open(['route' => 'admin.models.store']) !!}
 
-            @include('admin.brands.template.form')
+            @include('admin.models.template.form')
             <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Registrar</button>
 
         </div>
